@@ -7,7 +7,7 @@ external_components:
 #     path: ./components
   source:
     type: git
-    url: http://github.com/grob6000/dekacontroller-esphome
+    url: https://github.com/grob6000/dekacontroller-esphome
     username: !secret github_username
     password: !secret github_token
   
