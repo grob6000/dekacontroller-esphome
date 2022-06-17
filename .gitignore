@@ -1,1 +1,4 @@
 secrets.yaml
+.esphome
+tasmotizer*
+*__pycache__*
