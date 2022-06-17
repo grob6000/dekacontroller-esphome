@@ -24,7 +24,7 @@ CONFIG_SCHEMA = cv.Schema({
         binary_sensor.binary_sensor_schema().extend(),
     cv.Optional(CONF_DRIFTSENSOR):
         sensor.sensor_schema().extend()
-}).extend(uart.UART_DEVICE_SCHEMA)
+}).extend(cv.COMPONENT_SCHEMA).extend(uart.UART_DEVICE_SCHEMA)
 
 def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])

@@ -2,15 +2,14 @@ esphome:
   name: dekacontroller
 
 external_components:
-  source:
-     type: local
-     path: ./components
-
 #  source:
-#    type: git
-#    url: http://github.com/grob6000/dekacontroller-esphome
-#    username: !secret github_username
-#    password: !secret github_token
+#     type: local
+#     path: ./components
+  source:
+    type: git
+    url: http://github.com/grob6000/dekacontroller-esphome
+    username: !secret github_username
+    password: !secret github_token
   
 esp8266:
   board: esp12e
