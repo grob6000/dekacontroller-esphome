@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor, binary_sensor, text_sensor, uart
-from esphome.const import CONF_ID, CONF_VOLTAGE, CONF_CURRENT, CONF_STATE, UNIT_SECOND, ICON_TIMER
+from esphome.const import CONF_ID, CONF_VOLTAGE, CONF_CURRENT, CONF_STATE, UNIT_SECOND, ICON_TIMER, ICON_SIGNAL, ICON_PULSE, ICON_RESTART, DEVICE_CLASS_DURATION, UNIT_SECOND
 
 dekacontroller_ns = cg.esphome_ns.namespace('dekacontroller')
 DekaControllerComponent = dekacontroller_ns.class_('DekaControllerComponent', cg.Component)
@@ -17,13 +17,13 @@ CONF_DRIFTSENSOR = "drift"
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(DekaControllerComponent),
     cv.Optional(CONF_GPSSTATESENSOR):
-        text_sensor.text_sensor_schema().extend(),
+        text_sensor.text_sensor_schema(icon=ICON_SIGNAL).extend(),
     cv.Optional(CONF_SYNCSTATESENSOR):
-        text_sensor.text_sensor_schema().extend(),
+        text_sensor.text_sensor_schema(icon=ICON_RESTART).extend(),
     cv.Optional(CONF_RUNSTATESENSOR):
-        binary_sensor.binary_sensor_schema().extend(),
+        binary_sensor.binary_sensor_schema(icon=ICON_PULSE).extend(),
     cv.Optional(CONF_DRIFTSENSOR):
-        sensor.sensor_schema().extend()
+        sensor.sensor_schema(icon=ICON_TIMER,device_class=DEVICE_CLASS_DURATION,unit_of_measurement=UNIT_SECOND).extend()
 }).extend(cv.COMPONENT_SCHEMA).extend(uart.UART_DEVICE_SCHEMA)
 
 def to_code(config):
