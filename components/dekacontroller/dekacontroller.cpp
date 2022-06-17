@@ -25,7 +25,7 @@ void DekaControllerComponent::loop() {
   }
   if ((index >= 6) && (buffer[index-1] == '\n')) {
     // null terminate the buffer
-    if (buffer[index-2] = '\r') {
+    if (buffer[index-2] == '\r') {
       buffer[index-2] = 0;
     }
     buffer[index-1] = 0;
