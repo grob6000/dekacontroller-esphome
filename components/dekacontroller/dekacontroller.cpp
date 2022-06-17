@@ -3,7 +3,7 @@
 #include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/components/binary_sensor/binary_sensor.h"
 #include "esphome/components/uart/uart.h"
-
+#include "esphome/core/log.h"
 #include "dekacontroller.h"
 
 namespace esphome {
@@ -24,6 +24,13 @@ void DekaControllerComponent::loop() {
     index++;
   }
   if ((index >= 6) && (buffer[index-1] == '\n')) {
+    // null terminate the buffer
+    if (buffer[index-2] = '\r') {
+      buffer[index-2] = 0;
+    }
+    buffer[index-1] = 0;
+    // log
+    ESP_LOGD(TAG, "Received: %s", buffer);
     // process line
     if (this->gpssensor != nullptr) {
       switch (buffer[0]) {
