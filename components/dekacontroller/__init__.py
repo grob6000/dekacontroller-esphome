@@ -23,7 +23,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Optional(CONF_RUNSTATESENSOR):
         binary_sensor.binary_sensor_schema(icon=ICON_PULSE).extend(),
     cv.Optional(CONF_DRIFTSENSOR):
-        sensor.sensor_schema(icon=ICON_TIMER,device_class=DEVICE_CLASS_DURATION,unit_of_measurement=UNIT_SECOND,accuracy_decimals=0,state_class=STATE_CLASS_MEASUREMENT).extend()
+        sensor.sensor_schema(icon=ICON_TIMER,device_class=DEVICE_CLASS_DURATION,unit_of_measurement=UNIT_SECOND,accuracy_decimals=1,state_class=STATE_CLASS_MEASUREMENT).extend()
 }).extend(cv.COMPONENT_SCHEMA).extend(uart.UART_DEVICE_SCHEMA)
 
 def to_code(config):
