@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor, binary_sensor, text_sensor, uart
-from esphome.const import CONF_ID, CONF_VOLTAGE, CONF_CURRENT, CONF_STATE, UNIT_SECOND, ICON_TIMER, ICON_SIGNAL, ICON_PULSE, ICON_RESTART, DEVICE_CLASS_DURATION, UNIT_SECOND
+from esphome.const import CONF_ID, CONF_VOLTAGE, CONF_CURRENT, CONF_STATE, UNIT_SECOND, ICON_TIMER, ICON_SIGNAL, ICON_PULSE, ICON_RESTART, DEVICE_CLASS_DURATION, UNIT_SECOND, STATE_CLASS_MEASUREMENT
 
 dekacontroller_ns = cg.esphome_ns.namespace('dekacontroller')
 DekaControllerComponent = dekacontroller_ns.class_('DekaControllerComponent', cg.Component)
@@ -23,7 +23,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Optional(CONF_RUNSTATESENSOR):
         binary_sensor.binary_sensor_schema(icon=ICON_PULSE).extend(),
     cv.Optional(CONF_DRIFTSENSOR):
-        sensor.sensor_schema(icon=ICON_TIMER,device_class=DEVICE_CLASS_DURATION,unit_of_measurement=UNIT_SECOND).extend()
+        sensor.sensor_schema(icon=ICON_TIMER,device_class=DEVICE_CLASS_DURATION,unit_of_measurement=UNIT_SECOND,accuracy_decimals=0,state_class=STATE_CLASS_MEASUREMENT).extend()
 }).extend(cv.COMPONENT_SCHEMA).extend(uart.UART_DEVICE_SCHEMA)
 
 def to_code(config):
