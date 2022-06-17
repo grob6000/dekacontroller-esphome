@@ -3,10 +3,14 @@ esphome:
 
 external_components:
   source:
-    type: git
-    url: http://github.com/grob6000/dekacontroller-esphome
-    username: !secret github_username
-    password: !secret github_token
+     type: local
+     path: ./components
+
+#  source:
+#    type: git
+#    url: http://github.com/grob6000/dekacontroller-esphome
+#    username: !secret github_username
+#    password: !secret github_token
   
 esp8266:
   board: esp12e
@@ -18,7 +22,7 @@ logger:
 # Enable Home Assistant API
 api:
   encryption:
-    key: "DC29vOGSun1fQ5tpuexxdKNGh83ApPeagLOr4hjwRkY="
+    key: !secret encryption1
 
 ota:
   password: "da9a71b09eaa2394deb3dfe42091980b"
@@ -37,16 +41,13 @@ uart:
   rx_pin: 3
   baud_rate: 9600
 
-sensor:
-  - platform: custom
-    lambda: |-
-      auto s = new DekaController(id(uart_bus));
-      App.register_component(s);
-      return {s->gps_state, s->sync_state, s->run_state, s->drift};
-    sensors:
-     - name: deka_gps_state
-     - name: deka_sync_state
-     - name: deka_run_state
-     - name: deka_drift
-       unit_of_measurement: s
-      
+dekacontroller:
+  id: dc1
+  gps:
+    name: Dekacontroller GPS
+  sync:
+    name: Dekacontroller Sync
+  run:
+    name: Dekacontroller Running
+  drift:
+    name: Dekacontroller Drift
