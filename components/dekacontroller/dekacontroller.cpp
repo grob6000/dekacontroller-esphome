@@ -68,8 +68,18 @@ void DekaControllerComponent::loop() {
       this->runsensor->publish_state((bool)(buffer[2] == '1'));
     }
     if (this->driftsensor != nullptr) {
-      int16_t d = (int16_t)strtol(&buffer[2], NULL, 16);
-      this->driftsensor->publish_state(d);
+      switch (buffer[1]) {
+        case 'N':
+        case 'E':
+          this->driftsensor->publish_state(NAN);
+          break;
+        case 'O':
+        case 'D':
+        default:
+          int16_t d = (int16_t)strtol(&buffer[2], NULL, 16);
+          this->driftsensor->publish_state(d);
+          break;
+      }
     }
     index = 0;
   } 
