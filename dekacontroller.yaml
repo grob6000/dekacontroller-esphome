@@ -50,5 +50,21 @@ dekacontroller:
     name: Dekacontroller Sync
   run:
     name: Dekacontroller Running
+  track:
+    name: Dekacontroller Track
   drift:
     name: Dekacontroller Drift
+  zerom0:
+    name: Dekacontroller Zero M0
+  zerom00:
+    name: Dekacontroller Zero M00
+  zeroh0:
+    name: Dekacontroller Zero H0
+  zeroh00:
+    name: Dekacontroller Zero H00
+  runin:
+    name: Dekacontroller Run Input
+  runout:
+    name: Dekacontroller Run Output
+  timezone:
+    name: Dekacontroller Timezone
