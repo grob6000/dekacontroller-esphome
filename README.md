@@ -6,6 +6,10 @@ It talks to the [dekacontroller microcontroller firmware](https://github.com/gro
 
 One output pin can be used to trigger a re-sync of the clock (the microcontroller has a button input for re-sync). This is exposed as a switch in Home Assistant).
 
+An example ESPHome config is included in configuration.yaml
+
+While this probably has limited use for others, feel free to use this as the basis for creating your own ESPHome components with a serial interface - it's a working example at least.
+
 ## Protocol
 
 ### Description 
